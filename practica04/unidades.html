@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>Modificación de un elemento (1)</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type "text/javascript" src="./js/velocidad.js"></script>
+</head>
+
+<body>
+  <h2>Conversor de unidades</h2>
+  <div>
+    <p>Unidad en m/s: <span id="in">10</span></p>
+  </div>
+  <div>
+    <p id="out"></p>
+  </div>
+  <br>
+  <button id="boton01">m/s</button>
+  <button id="boton02">km/h</button>
+  <button id="boton03">mph</button>
+  <script>
+    $(document).ready(function() {
+      $("#boton01").click(function() {
+        let vel_in=$("#in").text();
+        let vel_out=converter(vel_in, "m/s");
+        $("#out").text(vel_out);
+      });
+
+      $("#boton02").click(function() {
+        let vel_in=$("#in").text();
+        let vel_out=converter(vel_in, "km/h");
+        $("#out").text(vel_out);
+      });
+
+      $("#boton03").click(function() {
+        let vel_in=$("#in").text();
+        let vel_out=converter(vel_in, "mph");
+        $("#out").text(vel_out);
+      });
+    });
+  </script>
+</body>
+</html>
