@@ -1,0 +1,20 @@
+--1.3--
+
+Se han analizado las páginas Youtube, Twitter y Netflix. Entre los múlitples errores encontrados, los siguientes son de interés:
+1) Netflix -> "Attribute placeholder not allowed on element li at this point."
+    -Se soluciona reubicando el atributo "placeholder" fuera de "li" o dentro de la misma linea pero sin crear conflicto.
+
+2) Netflix -> "Duplicate ID ''." (ID de un span)
+    -Se soluciona utilizando una ID diferente para cada elemento HTML que requiera dicho atributo.
+
+3) Youtube -> "Bad value for attribute id on element span: An ID must not be the empty string."
+    -Se Soluciona nuevamente dando una ID diferente para cada elemento, no simplemente "".
+
+4) Youtube -> "Element div not allowed as child of element label in this context. (Suppressing further errors from this subtree.)"
+    -El elemento "div" no puede ser un hijo de "label". Como máximo puede ser un hijo de un elemento de "dl".
+
+5) Twitter -> "The button role is unnecessary for element button." 
+    -No es necesario especificar como "role=button" un elemento que ya es de tipo button (es sólo un warning).
+
+6) Twitter -> "Element ul not allowed as child of element button in this context. (Suppressing further errors from this subtree.)"
+    -No puede existir un elemento de tipo lista descendiendo de un elemento de tipo interactivo.

@@ -1,0 +1,115 @@
+### JONATHAN CANO PICAZO - jcanopi ###
+
+//--EJERCICIO 2.1--//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+--EJEMPLO 1:-------------------------------------------------------------------------------------------------------------
+Color de fondo de la página en beige.
+
+<h1>Hola, css</h1> --> Se le aplican las reglas de color (violeta), alineación (centrado) y tamaño de fuente (grande).
+
+<p>Este párrafo no tiene nada de particular<p> --> Se le aplican las reglas de color (azul), alineación (izquierda) y
+color de fondo (amarillo).
+
+<p class=feo>Este párrafo tiene un formato terrible.</p> --> Se le aplican las reglas de la clase .feo, esto es: color
+rojo y color de fondo rosa.
+
+<div class=inverso>Este aparece con los colores invertidos. </div> --> Se le aplican las reglas de la clase .inverso,
+esto es: color de letra blanco y color de fondo negro.
+
+
+--EJEMPLO 2:--------------------------------------------------------------------------------------------------------------
+<p>Párrafo 1. No está dentro de un div</p> --> No se le aplica ninguna regla por no estar dentro de un div.
+
+<p>Párrafo 2. Está directamente dentro de un div.</p> --> Se le aplican las reglas de "div p" (color azul) y de "div>p"
+(tamaño 200%), esta ultima debido a que el párrafo esta directamente dentro de un div.
+
+<h2>Una sección</h2> --> Letra aumentada debido a h2. No más reglas aplicadas, debido a estar directamente dentro de <section>.
+
+<p>Párrafo 3. Está dentro de un div, pero no directamente</p> --> Se le aplica la regla de "div p" por ser un <p> contenido
+dentro de un div, esto es: color azul simplemente. No se aplica "div>p" por estar contenido dentro de <section>.
+
+<p>Párrafo 4. Está directamente dentro de un div.</p> --> Se le aplica la regla de "div p" de color azul y de "div>p"
+de tamaño 200%.
+
+<p>Párrafo 5. Está directamente dentro de un div, y junto a otro párrafo.</p> --> Se le aplican las reglas anteriores
+más "p+p" por estar directamente junto a un párrafo. Esto es, color de fondo amarillo.
+
+
+--EJEMPLO 3:----------------------------------------------------------------------------------------------------------------
+<div class="país españa"> 1.El país España --> Ninguna regla aplicada.
+
+<div class="castilla-la-mancha"> 2.La comunidad Castilla la Mancha --> Se le aplica subrayado debido a que es la clase
+".castilla-la-mancha".
+
+<div class="toledo"> 3.La ciudad de Toledo </div> --> Subrayado por ser hijo de ".castilla-la-mancha" y color rojo debido a
+ser hijo de '<div class="país españa">' y además ser de la clase "toledo". Texto centrado por ser de la clase "toledo".
+
+<div class="cuenca"> 4.La ciudad de Cuenca </div> --> Subrayado por ser hijo de ".castilla-la-mancha" y texto centrado debido
+a ser de la clase "cuenca".
+
+<div class="albacete"> 5.La ciudad Albacete </div> --> Subrayado por ser hijo de ".castilla-la-mancha".
+
+<div class="país estados-unidos"> 6.El país Estados Unidos --> No se le aplica ninguna regla.
+
+<div class="ohio"> 7.El estado de Ohio --> No se le aplica ninguna regla.
+
+<div class="toledo"> 8.La ciudad de Toledo </div> --> Color azul y centrado debido a ser unicamente de la clase "toledo".
+
+
+--EJEMPLO 4:----------------------------------------------------------------------------------------------------------------
+Sólo se le aplican reglas al párrafo 2:
+
+<p id="alfa">Párrafo 2, llamado alfa. Está dentro de un elemento div, pero no es un elemento div</p> --> por tener "id=alfa" se
+le aplica color azul; por ser un párrafo con "id=alfa" se le aplica tamaño 200%; por ser hijo de un div y tener "id=alfa" se
+le aplica estilo de letra 'italic'.
+
+
+--EJEMPLO 5:----------------------------------------------------------------------------------------------------------------
+<p>Párrafo 1.</p> --> Ninguna regla aplicada.
+
+<p class="reglamento urjc">Párrafo 2, clases reglamento y urjc.</p> --> Se le aplican todas las reglas: es de clase 'urjc'
+(color rojo, color de fondo azul); y además es de clase 'urjc' y además clase 'reglamento' (.urjc.reglamento), por lo que
+se aplica subrayado.
+
+<p class="reglamento ucm">Párrafo 2, clases reglamento y ucm.</p> --> Se le aplica unicamente el relleno azul, por ser de
+clase "reglamento".
+
+<p class="matriculacion">Párrafo 3, clase matriculación.</p> --> Ninguna regla aplicada.
+
+<p class="investigacion urjc">Párrafo 4, clases investigacion y urjc.</p> --> Se le aplica color rojo y fondo azul por ser
+únicamente de clase "urjc".
+
+<p class="investigacion uc3m">Párrafo 4, clases investigacion y uc3m.</p> --> Ninguna regla aplicada.
+
+
+--EJEMPLO 6:----------------------------------------------------------------------------------------------------------------
+<p>Párrafo 1.</p> --> Ninguna regla aplicada, ya que no tiene clase.
+
+<p class="compras">Párrafo 2, clases compras.</p> --> Se le aplica borde al ser un párrafo con clase.
+
+<p class="ventas">Párrafo 3, clases ventas.</p> --> Se le aplican las tres reglas (borde, letra y tamaño), debido a que tiene
+clase, uno de sus valores es "ventas", y efectivamente su único valor es "ventas".
+
+<p class="ventas promociones">Párrafo 4, clases ventas y promociones.</p> --> Se le aplican las reglas de borde y tamaño, ya
+que tiene clase y uno de sus valores en el nombre es "ventas".
+
+
+
+//--EJERCICIO 2.5--////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+--ej251--
+Párrafo azul y subrayado por estar dentro de un div (div p). Párrafo dentro de un div, pero de clase destacado (p.destacado).
+Se aplica color rojo, fuente y subrayado.
+
+--ej252--
+Párrafo 1 con color azul. Hay un background amarillo por span dentro de parrafo con id "aviso". Párrafo 2 con color rojo y
+tachado por ser un párrafo con "id=irrelevante".
+
+--ej253--
+Párrafo 2 inmediatamente dentro de un div (div>p), al igual que el resto, por lo tanto cambio de estilo de fuente. Párrafo 3
+con color rojo por tener clase "destacado". En "destacado" se aplica borde y fuente por span con clase "destacado raro".
+Párrafo 4 inmediatamente despues a párrafo con clase "destacado". Se aplica background.
+
+--ej254--
+Párrafo 2 sólo con nombre de clase (letra pequeña). Párrafo 3 con nombre de clase "large" (letra xx-large y oblique).
+Párrafo 4 con letra pequeña por tener nombre de clase y de tipo oblique por contener "large" en su nombre. 

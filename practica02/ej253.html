@@ -1,0 +1,37 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>ej253</title>
+  <style>
+    .destacado.raro {
+      border: 1px solid red;
+      font-family: sans-serif;
+    }
+
+    div>p {
+      font-style: italic;
+    }
+
+    p.destacado+p {
+      background-color: lightblue;
+    }
+
+    p.destacado {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Párrafo sin regla. No dentro de div ni clase.</p>
+  <div>
+    <p>Párrafo dentro de un div, cambio de fuente.</p>
+    <p class="destacado">Párrafo de clase <span class="destacado raro">destacado</span>. Se aplica color rojo.</p>
+    <p>Párrafo inmediatamente después del anterior. Se le aplica color de fondo.</p>
+  </div>
+</body>
+
+</html>

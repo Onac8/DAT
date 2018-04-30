@@ -1,0 +1,35 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 4.3 - Modificación de un botón</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    .oculto {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="boton01"><span id="text">Ver foto</span></button>
+  <div id="foto" class="oculto">
+    <img src="images/paisaje.jpg" alt="Foto de paisaje" width="1000" height="600">
+  </div>
+  <script>
+    $(document).ready(function() {
+      $("#boton01").click(function() {
+        $("#foto").toggleClass("oculto");
+        if ($("#foto").hasClass("oculto")) {
+          $("#text").text("Ver foto");
+        } else {
+          $("#text").text("Ocultar foto");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

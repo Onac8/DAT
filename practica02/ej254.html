@@ -1,0 +1,28 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>ej254</title>
+  <style>
+    p[class] {
+      font-size: small;
+    }
+
+    p[class="large"] {
+      font-size:xx-large;
+    }
+
+    p[class~="large"] {
+      font-style:oblique;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Párrafo sin reglas. No tiene clase.</p>
+  <p class="small">Párrafo simplemente con clase. Letra pequeña.</p>
+  <p class="large">Párrafo con letra xx-large y fuente oblique.</p>
+  <p class="large almost">Párrafo con letra pequeña y fuente.</p>
+</body>

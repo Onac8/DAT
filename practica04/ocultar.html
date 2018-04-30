@@ -1,0 +1,149 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 4.1 - CURRICULUM VITAE - Ocultar clases</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    body {
+      background-color: #E6E6E6;
+    }
+
+    div.content {
+      max-width: 595px;
+      margin: auto;
+      background-image: url("images/cvback2.png");
+      padding-top: 100px;
+      padding-bottom: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    div.logo {
+      text-align: right;
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    div.personal {
+      border: 1px solid black;
+      border-radius: 12px;
+    }
+
+    p.apartados {
+      color: white;
+      background-color: #5882FA;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    span.grande {
+      font-size: x-large;
+    }
+
+    #email {
+      text-decoration: underline;
+      color: #00BFFF;
+    }
+
+    #nombre {
+      font-size: x-large;
+    }
+
+    .oculto {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="logo">
+      <img src="images/URJ_logo_Color_POS.png" alt="Logo URJC" width="149" height="58">
+    </div>
+    <button id="boton01">Mostrar/ocultar - Información personal</button>
+    <div class="personal" id="personal">
+      <p>Nombre: <span id="nombre">Jonathan Cano Picazo</span></p>
+      <p>Domicilio: C/Villalba 9 3C (Fuenlabrada, Madrid)</p>
+      <p>DNI: 49147015V</p>
+      <p>Teléfono: <span>677010914</span></p>
+      <p>E-mail: <a href="https://www.google.com/gmail/"><span id="email">canopicazojonathan@gmail.com</span></a></p>
+      <p>Nacimiento: 16 de Noviembre de 1994 (23 años)</p>
+      <p>Carnet: Tipo B. <span>Vehículo propio</span></p>
+    </div>
+    <br>
+    <hr>
+    <button id="boton02">Mostrar/ocultar - Formación académica</button>
+    <div class="formacion" id="formacion">
+      <p class="apartados">FORMACIÓN ACADÉMICA</p>
+      <ul>
+        <li>Título de <span>Bachillerato</span> (IES Salvador Allende).</li>
+        <li><span>Grado en Tecnologías de Telecomunicación</span> (Universidad Rey Juan Carlos). Cursando 4º año.</li>
+      </ul>
+    </div>
+    <br>
+    <hr>
+    <button id="boton03">Mostrar/ocultar - Formación Complementaria</button>
+    <div class="complementaria" id="complementaria">
+      <p class="apartados">FORMACIÓN COMPLEMENTARIA</p>
+      <ul>
+        <li>Cursos de <span>ofimática</span>, mecanografía y diseño de páginas web: Excel, Access, Power Point, PhotoShop, Adobe Premiere.</li>
+        <li>Manejo de <span>sistemas operativos</span>: Windows, Linux, Mac OS, Android, iOS.</li>
+        <li>Manejo de diversos <span>lenguajes</span>: C, Java, JSon, Python, Matlab, CSS, XML.</li>
+      </ul>
+    </div>
+    <br>
+    <hr>
+    <button id="boton04">Mostrar/ocultar - Idiomas</button>
+    <div class="idiomas" id="idiomas">
+      <p class="apartados">IDIOMAS</p>
+      <ul>
+        <li>Castellano: Nativo (hablado/escrito)</li>
+        <li>Inglés: <span>B2</span> (nivel alto hablado y escrito). Título TOEIC</li>
+      </ul>
+    </div>
+    <br>
+    <hr>
+    <button id="boton05">Mostrar/ocultar - Experiencia Laboral</button>
+    <div class="experiencia" id="experiencia">
+      <p class="apartados">EXPERIENCIA LABORAL</p>
+      <ul>
+        <li>2018: <span>Icono Telecom SL</span>: planificación e instalación de fibra óptica y HFC.</li>
+        <li>2017: <span>Cellnex Telecom</span> (Retevisión I SA): Zona técnica y comercial.</li>
+        <li>2016-2017: Vendedor, reponedor y consultor en Alcampo SA (zona de informática, audio e imagen).</li>
+        <li>2015-2016: Cajero/reponedor en Carrefour SA.</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $("#boton01").click(function() {
+        $("#personal").toggleClass("oculto")
+      });
+
+      $("#boton02").click(function() {
+        $("#formacion").toggleClass("oculto")
+      });
+
+      $("#boton03").click(function() {
+        $("#complementaria").toggleClass("oculto")
+      });
+
+      $("#boton04").click(function() {
+        $("#idiomas").toggleClass("oculto")
+      });
+
+      $("#boton05").click(function() {
+        $("#experiencia").toggleClass("oculto")
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE HTML>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 4.6 - CALCULADORA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type "text/javascript" src="./js/calc.js"></script>
+</head>
+
+<body>
+  <br>
+  <div class="container">
+    <p><u>CALCULADORA 1</u></p>
+    <button class="btn btn-warning" type="button" id="reset">AC</button>
+    <button class="btn btn-primary disabled" type="button" id="result"></button>
+    <br>
+    <button class="btn btn-default calc1" type="button">7</button>
+    <button class="btn btn-default calc1" type="button">8</button>
+    <button class="btn btn-default calc1" type="button">9</button>
+    <button class="btn operation" type="button" id="div">/</button>
+    <br>
+    <button class="btn btn-default calc1" type="button">4</button>
+    <button class="btn btn-default calc1" type="button">5</button>
+    <button class="btn btn-default calc1" type="button">6</button>
+    <button class="btn operation" type="button" id="mult">*</button>
+    <br>
+    <button class="btn btn-default calc1" type="button">1</button>
+    <button class="btn btn-default calc1" type="button">2</button>
+    <button class="btn btn-default calc1" type="button">3</button>
+    <button class="btn operation" type="button" id="sub">-</button>
+    <br>
+    <button class="btn btn-default calc1" type="button">0</button>
+    <button class="btn btn-default calc1" type="button">.</button>
+    <button class="btn btn-success" type="button" id="equal">=</button>
+    <button class="btn operation" type="button">+</button>
+    <br>
+    <br>
+    <button class="btn btn-primary disabled" type="button" id="proceso">Proceso:  |  </button>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="container">
+  <p><u>CALCULADORA 2</u></p>
+  <button class="btn btn-warning" type="button" id="reset2">AC</button>
+  <button class="btn btn-primary disabled" type="button" id="result2"></button>
+  <br>
+  <button class="btn btn-default calc2" type="button">7</button>
+  <button class="btn btn-default calc2" type="button">8</button>
+  <button class="btn btn-default calc2" type="button">9</button>
+  <button class="btn operation2" type="button" id="div">/</button>
+  <br>
+  <button class="btn btn-default calc2" type="button">4</button>
+  <button class="btn btn-default calc2" type="button">5</button>
+  <button class="btn btn-default calc2" type="button">6</button>
+  <button class="btn operation2" type="button" id="mult">*</button>
+  <br>
+  <button class="btn btn-default calc2" type="button">1</button>
+  <button class="btn btn-default calc2" type="button">2</button>
+  <button class="btn btn-default calc2" type="button">3</button>
+  <button class="btn operation2" type="button" id="sub">-</button>
+  <br>
+  <button class="btn btn-default calc2" type="button">0</button>
+  <button class="btn btn-default calc2" type="button">.</button>
+  <button class="btn btn-success" type="button" id="equal2">=</button>
+  <button class="btn operation2" type="button">+</button>
+  <br>
+  <br>
+  <button class="btn btn-primary disabled" type="button" id="proceso2">Proceso:  |  </button>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      //CALC1 FUNCTIONS---------------------------------------------------------
+      //Numeros --> Mostrarlos según clickeamos
+      $(".calc1").click(function() {
+        let operando = $(this).text();
+        $("#result").append(operando);
+        $("#proceso").append(operando);
+      });
+
+      //Operaciones (caso 111 +*/- )
+      $(".operation").click(function() {
+        let operando = $("#result").text();
+        getKey(operando, calc);
+        let operador = $(this).text();
+        $("#result").text("");
+        getKey(operador, calc); //aqui me devuelve cannot divide by 0
+        $("#proceso").append(operador);
+      });
+
+      //Resultado
+      $("#equal").click(function() {
+        let operando = $("#result").text();
+        getKey(operando, calc);
+        let operador = $(this).text();
+        let result = getKey(operador, calc);
+        $("#result").text("");
+        $("#proceso").append(" " + result + "&nbsp; | &nbsp;");
+      });
+
+      //Reset
+      $("#reset").click(function() {
+        let operador = $(this).text();
+        getKey(operador, calc);
+        $("#result").text("");
+        $("#proceso").text("Proceso: ");
+      });
+
+
+      //CALC2 FUNCTIONS---------------------------------------------------------
+      //Numeros --> Mostrarlos según clickeamos
+      $(".calc2").click(function() {
+        let operando = $(this).text();
+        $("#result2").append(operando);
+        $("#proceso2").append(operando);
+      });
+
+      //Operaciones (caso 111 +*/- )
+      $(".operation2").click(function() {
+        let operando = $("#result2").text();
+        getKey(operando, calc2);
+        let operador = $(this).text();
+        $("#result2").text("");
+        getKey(operador, calc2); //aqui me devuelve cannot divide by 0
+        $("#proceso2").append(operador);
+      });
+
+      //Resultado
+      $("#equal2").click(function() {
+        let operando = $("#result2").text();
+        getKey(operando, calc2);
+        let operador = $(this).text();
+        let result = getKey(operador, calc2);
+        $("#result2").text("");
+        $("#proceso2").append(" " + result + "&nbsp; | &nbsp;");
+      });
+
+      //Reset
+      $("#reset2").click(function() {
+        let operador = $(this).text();
+        getKey(operador, calc2);
+        $("#result2").text("");
+        $("#proceso2").text("Proceso: ");
+      });
+
+      let calc = { //inicializamos el objeto
+        arg1: 0,
+        op: NaN,
+        arg2: 0,
+        result: 0,
+        flag: false,
+      }
+
+      let calc2 = { //inicializamos el objeto 2
+        arg1: 0,
+        op: NaN,
+        arg2: 0,
+        result: 0,
+        flag: false,
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

@@ -10,76 +10,96 @@ function isOperator(key) {
 
   for (let i of op) {
     if (i == key) {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
+}
+
+
+function clear(calc){
+  calc.arg1= 0;
+  calc.op= NaN;
+  calc.arg2= 0;
+  calc.result= 0;
+  calc.flag=false;
 }
 
 
 function solve(calc) {
   switch (calc.op) {
     case "+":
-      calc.sol = calc.arg1 + calc.arg2;
-      console.log(calc.sol);
+      calc.result = calc.arg1 + calc.arg2;
       break;
     case "*":
-      calc.sol = calc.arg1 * calc.arg2;
-      console.log(calc.sol);
+      calc.result = calc.arg1 * calc.arg2;
       break;
     case "-":
-      calc.sol = calc.arg1 - calc.arg2;
-      console.log(calc.sol);
+      calc.result = calc.arg1 - calc.arg2;
       break;
     case "/":
-      calc.sol = calc.arg1 / calc.arg2;
-      console.log(calc.sol);
+      if(calc.arg2 == "0"){
+        return -1;
+        break;
+      }
+      calc.result = calc.arg1 / calc.arg2;
       break;
   }
+  return 0;
 }
 
 
 function getKey(key, calc) {
-  if (Number.isInteger(key)) { //ARGS
+  let str;
+
+  if (Number(key)) { //ARGS
     if (!calc.flag) { //first argument
-      calc.arg1 = key;
-      console.log(calc.arg1);
+      calc.arg1 = Number(key);
+      str = calc.arg1;
     } else { //second argument
-      calc.arg2 = key;
-      console.log(calc.arg2);
+      calc.arg2 = Number(key);
+      str = calc.arg2;
     }
 
   } else if (isOperator(key)) {
     if (!calc.flag) { // Case 1 *
       calc.op = key;
       calc.flag = true;
-      console.log(calc.op);
+      str = calc.op;
     } else { //Case 2 + 4 *
-      solve(calc);
-      calc.arg1 = calc.sol;
-      calc.op = key;
-      console.log(calc.op);
+      if (solve(calc) < 0){
+        str = " -> Cannot divide by 0!";
+        clear(calc);
+      }else{
+        calc.arg1 = calc.result;
+        calc.op = key;
+        console.log("=" + calc.result);
+        str = calc.op;
+      }
     }
 
-  } else if (key == "=") {
-    solve(calc);
+  } else if (key == "=" ) {
+    if (solve(calc) < 0){
+      str = " -> Cannot divide by 0!";
+      clear(calc);
+    }else{
+      str = "=" + calc.result;
+      clear(calc);
+    }
 
-  } else if (key == "c") {
-    calc.arg1 = 0;
-    calc.op = NaN;
-    calc.arg2 = 0;
-    calc.result = 0;
-    calc.flag = false;
-    console.log(0);
+  } else if (key == "c" || key == "C") {
+    clear(calc);
+    str = "AC";
 
   } else {
-    return -1; //Invalid number or operation
+    str = "Invalid number or operation";
   }
+  return str;
 }
 
 
 function testCalc() {
-  let calc = {
+  let calc = { //inicializamos el objeto
     arg1: 0,
     op: NaN,
     arg2: 0,
@@ -87,18 +107,26 @@ function testCalc() {
     flag: false,
   }
 
-  getKey(3, calc);
-  getKey("-", calc);
-  getKey(2, calc);
-  getKey("*", calc);
-  getKey(5, calc);
-  getKey("=", calc);
-  getKey("c", calc);
-  getKey(4, calc);
-  getKey(9, calc);
-  getKey("*", calc);
-  getKey(2, calc);
-  getKey("=", calc);
+  console.log(getKey("1", calc)); //tratar errores? (-1)
+  console.log(getKey("+", calc));
+  console.log(getKey("1", calc));
+  console.log(getKey("+", calc));
+  console.log(getKey("1", calc));
+  console.log(getKey("=", calc));
+  console.log(getKey("2", calc));
+  console.log(getKey("-", calc));
+  console.log(getKey("2", calc));
+  console.log(getKey("=", calc));
+  console.log(getKey("1", calc));
+  console.log(getKey("*", calc));
+  console.log(getKey("5", calc));
+  console.log(getKey("=", calc));
+  console.log(getKey("c", calc));
+  console.log(getKey("4", calc)); //arg inservible, al no poner despues un operador
+  console.log(getKey("9", calc));
+  console.log(getKey("*", calc));
+  console.log(getKey("2", calc));
+  console.log(getKey("=", calc));
 }
 
 testCalc();

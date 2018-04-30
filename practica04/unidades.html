@@ -1,45 +1,61 @@
+<!--Jonathan Cano Picazo - jcanopi -->
 <!DOCTYPE html>
 <html lang="es-ES">
 
 <head>
   <meta charset="utf-8">
-  <title>Modificación de un elemento (1)</title>
+  <title>Ejercicio 4.2 / 4.4 - Lectura y escritura de datos + tooltip</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type "text/javascript" src="./js/velocidad.js"></script>
+  <style>
+    #in {
+      font-style: italic;
+      font-weight: bold;
+      color: red;
+    }
+  </style>
 </head>
 
 <body>
-  <h2>Conversor de unidades</h2>
-  <div>
-    <p>Unidad en m/s: <span id="in">10</span></p>
+  <div class="container">
+    <h2>Conversor de unidades</h2>
+    <p>Unidad en m/s: <span id="in" data-toggle="tooltip" title="Dato estático a leer" data-placement="bottom">10</span></p>
   </div>
-  <div>
+  <div class="container">
     <p id="out"></p>
   </div>
   <br>
-  <button id="boton01">m/s</button>
-  <button id="boton02">km/h</button>
-  <button id="boton03">mph</button>
+  <div class="container">
+    <button id="boton01" data-toggle="tooltip" title="De m/s a m/s" data-placement="bottom">m/s</button>
+    <button id="boton02" data-toggle="tooltip" title="De m/s a km/h" data-placement="bottom">km/h</button>
+    <button id="boton03" data-toggle="tooltip" title="De m/s a mph" data-placement="bottom">mph</button>
+  </div>
   <script>
     $(document).ready(function() {
-      $("#boton01").click(function() {
-        let vel_in=$("#in").text();
-        let vel_out=converter(vel_in, "m/s");
-        $("#out").text(vel_out);
-      });
+    $("#boton01").click(function() {
+      let vel_in = $("#in").text();
+      let vel_out = converter(vel_in, "m/s");
+      $("#out").text(vel_out);
+    });
 
-      $("#boton02").click(function() {
-        let vel_in=$("#in").text();
-        let vel_out=converter(vel_in, "km/h");
-        $("#out").text(vel_out);
-      });
+    $("#boton02").click(function() {
+      let vel_in = $("#in").text();
+      let vel_out = converter(vel_in, "km/h");
+      $("#out").text(vel_out);
+    });
 
-      $("#boton03").click(function() {
-        let vel_in=$("#in").text();
-        let vel_out=converter(vel_in, "mph");
-        $("#out").text(vel_out);
-      });
+    $("#boton03").click(function() {
+      let vel_in = $("#in").text();
+      let vel_out = converter(vel_in, "mph");
+      $("#out").text(vel_out);
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
     });
   </script>
 </body>
+
 </html>

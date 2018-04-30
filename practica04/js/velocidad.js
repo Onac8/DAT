@@ -1,1 +1,1 @@
-/home/alumnos/jcanopi/dat/practica03/js02.js
+/home/jonycp/Escritorio/DAT/PRACTICAS/practica03/js02.js

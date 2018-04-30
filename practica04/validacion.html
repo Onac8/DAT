@@ -1,0 +1,60 @@
+<!--Jonathan Cano Picazo - jcanopi-->
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 4.5 - Validación de formulario</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type "text/javascript" src="./js/calculadora.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Ejercicio 4.5 - Validación de formulario </h2>
+    <form action="/example.html">
+      <p>
+        Contraseña:
+        <br>
+        <input type="password" name="pass" id="pass">
+      </p>
+      <p>
+        Repite contraseña:
+        <br>
+        <input type="password" name="pass2" id="pass2">
+      </p>
+      <br>
+      <p id="val"></p>
+      <p id="val2"></p>
+      <input type="submit" value="Continuar">
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#pass").on("change keyup paste mouseup", function() {
+        let pass = $(this).val();
+        let espChars = ",.-{}[]!·$%&/()=?¿¡':" + '"';
+        if (isPassword(pass, 5, 1, 1, 1, 1, espChars)) {
+          $("#val").text("Contraseña aceptable");
+        } else {
+          $("#val").text("Contraseña inválida");
+        }
+      });
+
+      $("#pass2").on("change keyup paste mouseup", function() {
+        let pass2 = $(this).val();
+        if (pass === pass2) {
+          $("#val2").text("Contraseña coincidente");
+        }else{
+          $("#val2").text("Contraseña no coincidente");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>EASYBANK - TRANSFERENCIA BANCARIA</title>
+</head>
+
+<body>
+  <div>
+    <img src="images/bank.png" alt="Logo de Banco" width="300" height="150">
+    <p><strong>Solicitud de transferencia bancaria</strong></p>
+  </div>
+  <hr>
+  <form action="./operacion2.html">
+    <div class="solicitante">
+      <fieldset>
+        <legend><strong>SOLICITANTE</strong></legend>
+        <p>Solicitado por: Jonathan Cano Picazo</p>
+        <p>Nick de usuario: jcanopi</p>
+        <p>Cuenta a debitar: Cuenta Corriente 1 / 201921</p>
+        <p>
+          Monto a transferir:
+          <input type="number" name="dinero">
+        </p>
+      </fieldset>
+      <hr>
+    </div>
+    <div class="beneficiario">
+      <pre><strong>BENEFICIARIO</strong></pre>
+      <p>
+        Nombre del beneficiario:
+        <br>
+        <input type="text" name="nombre">
+      </p>
+      <p>
+        Numero de cuenta del beneficiario:
+        <br>
+        <input type="number" name="cuenta">
+      </p>
+
+      <p>
+        Tipo de banco:
+        <br>
+        <input type="radio" name="tipo" value="nacional" checked>Nacional<br>
+        <input type="radio" name="tipo" value="internacional">Internacional<br>
+      </p>
+
+      <p>
+        Concepto de transferencia:
+        <br>
+        <textarea name="mensaje" rows="10" cols="30" placeholder="..."></textarea>
+      </p>
+      <p>
+        He leido los terminos y condiciones
+        <input type="checkbox" name="terminos" value="si">
+        <br>
+      </p>
+      <input type="submit" value="Aceptar">
+    </div>
+  </form>
+</body>
+
+</html>

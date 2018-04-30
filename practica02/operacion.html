@@ -1,0 +1,88 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="utf-8">
+  <title>EASYBANK - TRANSFERENCIA BANCARIA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .panel-footer {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <div class="container">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <img src="images/bank.png" alt="Logo de Banco" width="300" height="150">
+        <h2>Solicitud de transferencia bancaria</h2>
+      </div>
+      <div class="panel-body">
+        <form action="./operacion2.html">
+          <div class="transferencia">
+            <fieldset>
+              <legend>SOLICITANTE</legend>
+              <p>Solicitado por: Jonathan Cano Picazo</p>
+              <p>Nick de usuario: jcanopi</p>
+              <p>Cuenta a debitar: Cuenta Corriente 1 / 201921</p>
+              <div class="form-group">
+                <label for="dinero"> Monto a transferir:</label>
+                <input type="number" id="dinero" class="form-control" name="dinero">
+              </div>
+              <br>
+              <br>
+            </fieldset>
+          </div>
+
+          <hr>
+
+          <div class="beneficiario">
+            <fieldset>
+              <legend>BENEFICIARIO</legend>
+              <div class="form-group">
+                <label for="dinero">Nombre del beneficiario:</label>
+                <input type="text" id="nombre" class="form-control" name="nombre">
+              </div>
+              <div class="form-group">
+                <label for="cuenta">Número de cuenta del beneficiario:</label>
+                <input type="number" id="cuenta" class="form-control" name="cuenta">
+              </div>
+              <br>
+
+              <p>
+                <b>Tipo de banco:</b>
+                <br>
+                <input type="radio" name="tipo" value="nacional" checked>Nacional<br>
+                <input type="radio" name="tipo" value="internacional">Internacional<br>
+              </p>
+
+              <div class="form-group">
+                <label for="mensaje">Concepto de transferencia:</label>
+                <textarea name="mensaje" id="mensaje" rows="10" cols="30" class="form-control" placeholder="..."></textarea>
+              </div>
+
+              <p>
+                <b>He leído los terminos y condiciones</b>
+                <br>
+                <input type="checkbox" name="terminos" value="si">
+                <br>
+              </p>
+
+              <input type="submit" value="Aceptar">
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
