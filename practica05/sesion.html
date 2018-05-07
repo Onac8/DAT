@@ -1,0 +1,64 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Practica 5.1 - Web Storage y Geolocalización</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type "text/javascript" src="./sesion.js"></script>
+  <style>
+    button.btn {
+      font-size: large;
+    }
+
+    button.btn-default {
+      font-size: medium;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>User data:</h2>
+    <br>
+    <button class="btn btn-default" type="button" id="boton01">Borrar info</button>
+    <br>
+    <br>
+    <p id="text"></p>
+  </div>
+
+  <script>
+    'use strict'
+    $(document).ready(function() {
+      let str;
+      if (!checkUser()) { //Caso user nuevo
+        str = "Hola " + getName() + ". Esta es tu primera visita. Tus coordenadas son: " +
+          getLat() + ", " + getLon() + "(más menos " + getPrecision() + " metros)";
+      }else{
+        alert("¡Hola de nuevo!");
+        if (sameLocation()){ //Caso user misma ubicacion
+          str = "Hola " + getName() + ". Tu última visita fue con fecha " + getDate() +
+          ", desde la misma ubicación que ahora (coordenadas " + getLat() + ", " + getLon() +
+          " (más menos " + getPrecision() + " metros)";
+        }else{ //Caso user distinta ubicacion
+          str = "Hola " + getName() + ". Tu última visita fue con fecha " + getDate() +
+          ". Tus coordenadas son: " + getLat() + ", " + getLon() + " (más menos " + getPrecision() + " metros)";
+        }
+      }
+      $("#text").text(str);
+
+      //Boton de borrado--------------
+      $("#boton01").click(function() {
+        localStorage.clear();
+        $("#text").text("Información borrada");
+      });
+    });
+  </script>
+
+</body>
+
+</html>

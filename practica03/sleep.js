@@ -10,3 +10,18 @@ function goToSleep(){
 
 let time = 3000;
 sleep(time);
+
+
+//ANOTHER VERSION
+
+// function sleep(time) {
+//   let start = new Date().getTime();
+//   for (let i = 0; i < 1e5; i++) {
+//     if ((new Date().getTime() - start) > time){
+//       break;
+//     }
+//   }
+// }
+
+//let time = 3000;
+//sleep(time);

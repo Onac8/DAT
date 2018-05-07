@@ -17,6 +17,18 @@
   <!-- Custom styles for this template -->
   <link href="css/business-frontpage.css" rel="stylesheet">
 
+  <!-- <style>
+    div.container{
+      max-width: 595px;
+      margin: auto;
+      background-image: url("images/cvback2.png");
+      padding-top: 100px;
+      padding-bottom: 100px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  </style> -->
+
 </head>
 
 <body>
@@ -37,10 +49,10 @@
               </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Referencias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">Acerca de...</a>
           </li>
         </ul>
       </div>
@@ -48,7 +60,7 @@
   </nav>
 
   <!-- Header with Carousel -->
-  <div class="container">
+  <!-- <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div id="carrusel01" class="carousel slide" data-ride="carousel" data-interval="5000">
@@ -103,8 +115,7 @@
         </div>
       </div>
     </div>
-  </div>
-
+  </div> -->
 
 
   <!-- Page Content -->
@@ -142,12 +153,16 @@
     </div>
     <!-- /.row -->
 
+    <div class="informativo">
+      <h2>Información gráfica</h2>
+    </div>
     <div class="row">
       <div class="col-sm-4 my-4">
         <div class="card">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <!-- <div id="yt01"></div> -->
+          <img class="card-img-top" src="malta.jpg" alt="malta" width="348" height="200">
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">Azzure Window</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
           </div>
           <div class="card-footer">
@@ -157,9 +172,9 @@
       </div>
       <div class="col-sm-4 my-4">
         <div class="card">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div id="yt01"></div>
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">Video</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
           </div>
           <div class="card-footer">
@@ -169,9 +184,10 @@
       </div>
       <div class="col-sm-4 my-4">
         <div class="card">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div id="yt03"></div>
+          <img class="card-img-top" src="blue-lagoon.jpg" alt="malta" width="348" height="200">
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 class="card-title">Blue Lagoon</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
@@ -189,7 +205,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Que Hacer en Malta</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -197,6 +213,31 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Carga asincrona del API del IFrame Player de YouTube
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // Creación de un iframe, con reproductor de YouTube
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt01', {
+        height: '200',
+        width: '348',
+        videoId: 'tYP8c54SXJk',
+        events: {
+          'onReady': onPlayerReady,
+        }
+      });
+    }
+    // El API llama a esta función cuando el reproductor esté listo
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+  </script>
+
 
 </body>
 

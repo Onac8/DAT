@@ -1,0 +1,56 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Práctica 5.6 - Geolocalización y mapas</title>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+  <style>
+    #id_mapa {
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="id_mapa"></div>
+
+  <script>
+    'use strict'
+    $(document).ready(function() {
+
+      let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
+
+      navigator.geolocation.getCurrentPosition(createMap, error, options);
+      // alert("Bienvenido a OpenStreetMap")
+
+      function createMap(pos) {
+        let lat = pos.coords.latitude.toFixed(3);
+        let lon = pos.coords.longitude.toFixed(3);
+        let precision = pos.coords.accuracy;
+        let zoom = 16;
+        let myMap = L.map('id_mapa').setView([lat, lon], zoom);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+        }).addTo(myMap);
+
+        let myCords = [lat, lon];
+        let myMark = L.marker(myCords).addTo(myMap);
+        myMark.bindPopup("Mi ubicación (más menos " + precision + " metros)").openPopup();
+      }
+
+      function error(err) {
+        console.warn("ERROR(" + err.code + "):" + err.message);
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Práctica 5.7 - ¿Where is my car?</title>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    #id_mapa {
+      height: 400px;
+    }
+
+    .oculto {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <br>
+  <div class="container">
+    <button class="btn btn-success" type="button" id="boton01">Recordar posición</button>
+  </div>
+  <br>
+  <div class="container" id="visible">
+    <button class="btn btn-primary disabled" type="button">Borrar posición</button>
+  </div>
+  <div class="container oculto" id="oculto">
+    <button class="btn btn-primary" type="button" id="boton02">Borrar posición</button>
+  </div>
+  <br>
+  <div class="container">
+    <p id="text"></p>
+  </div>
+  <br>
+  <div class="container" id="id_mapa"></div>
+
+
+  <script>
+    'use strict'
+    $(document).ready(function() {
+
+      let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
+
+      function createMap(pos) {
+        let lat = pos.coords.latitude.toFixed(3);
+        let lon = pos.coords.longitude.toFixed(3);
+        let lat2 = 40.2903; //Ejemplo ubicacion actual forzada
+        let lon2 = -3.791241; //Ejemplo ubicacion actual forzada
+        let precision = pos.coords.accuracy;
+        let zoom = 16;
+
+        //Mi mapa
+        let myMap = L.map('id_mapa').setView([lat, lon], zoom);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+        }).addTo(myMap);
+
+        //Mis coordenadas
+        let myCoords = [lat, lon];
+        let myMark = L.marker(myCoords).addTo(myMap);
+        myMark.bindPopup("Mi ubicación (más menos " + precision + " metros)").openPopup();
+
+        //PRUEBA (UBICACION ACTUAL FORZADA PARA DIFERENCIAR DEL COCHE)
+        // let myMap = L.map('id_mapa').setView([lat2, lon2], zoom);
+        // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        //   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+        // }).addTo(myMap);
+        // let myCoords = [lat2, lon2];
+        // let myMark = L.marker(myCoords).addTo(myMap);
+        // myMark.bindPopup("Mi ubicación (más menos " + precision + " metros)").openPopup();
+
+
+        //Coordenadas de mi coche
+        let coords = JSON.parse(localStorage.getItem("carPos")); //Objeto JS
+        if (coords) { //SÍ ubicación de COCHE guardada
+          let myCarCoords = [coords.lat, coords.lon];
+          let myCarMark = L.marker(myCarCoords).addTo(myMap);
+          myCarMark.bindPopup("Ubicación de mi coche (más menos " + coords.precision + " metros)").openPopup();
+        }
+      }
+
+
+      function rememberPos(pos) {
+        let carPos = {
+          lat: pos.coords.latitude.toFixed(3),
+          lon: pos.coords.longitude.toFixed(3),
+          precision: pos.coords.accuracy,
+        }
+        localStorage.setItem('carPos', JSON.stringify(carPos));
+      }
+
+
+      function error(err) {
+        console.warn("ERROR(" + err.code + "):" + err.message);
+      }
+
+
+      //MAIN--------------------------------------------------------------------
+      if (!localStorage.getItem("carPos")) { //NO ubicación de COCHE guardada
+        navigator.geolocation.getCurrentPosition(createMap, error, options);
+      } else { //SÍ ubicación de COCHE guardada
+        navigator.geolocation.getCurrentPosition(createMap, error, options);
+        $("#visible").toggleClass("oculto");
+        $("#oculto").toggleClass("oculto");
+      }
+
+      //Boton de guardado de ubicacion de coche
+      $("#boton01").click(function() {
+        navigator.geolocation.getCurrentPosition(rememberPos, error, options);
+        $("#text").text("Ubicación actualizada. Refresque la página...");
+      });
+
+      //Boton de borrado de ubicacion de coche (si hubiese)
+      $("#boton02").click(function() {
+        localStorage.clear();
+        $("#text").text("Ubicación borrada. Refresque la página...");
+      });
+
+    });
+  </script>
+</body>
+
+</html>

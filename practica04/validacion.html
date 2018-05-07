@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type "text/javascript" src="./js/calculadora.js"></script>
+  <script type "text/javascript" src="./js/pass.js"></script>
 </head>
 
 <body>
   <div class="container">
     <h2>Ejercicio 4.5 - Validación de formulario </h2>
-    <form action="/example.html">
+    <form action="#">
       <p>
         Contraseña:
         <br>
@@ -35,8 +35,9 @@
 
   <script>
     $(document).ready(function() {
+      let pass;
       $("#pass").on("change keyup paste mouseup", function() {
-        let pass = $(this).val();
+        pass = $(this).val();
         let espChars = ",.-{}[]!·$%&/()=?¿¡':" + '"';
         if (isPassword(pass, 5, 1, 1, 1, 1, espChars)) {
           $("#val").text("Contraseña aceptable");

@@ -37,10 +37,10 @@ try {
 } catch (e) {
   switch (e.message) {
     case 'ArgumentError':
-      console.log("Error: " + e.name + ": falta de argumentos -> Uso: ( converter(speed, unit) ).");
+      console.log(e.name + ": falta de argumentos -> Uso: ( converter(speed, unit) ).");
       break;
     case 'UseError':
-      console.log("Error: " + e.name + ": segundo argumento (unit) incorrecto. Esperado 'm/s', 'km/h' o 'mph'.");
+      console.log(e.name + ": segundo argumento (unit) incorrecto. Esperado 'm/s', 'km/h' o 'mph'.");
       break;
     default:
       ;

@@ -1,1 +1,1 @@
-/home/jonycp/Escritorio/DAT/PRACTICAS/practica03/js02.js
+/home/jonycp/Escritorio/DAT/DAT/practica03/js02.js

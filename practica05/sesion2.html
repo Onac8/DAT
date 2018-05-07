@@ -1,0 +1,67 @@
+<!--Jonathan Cano Picazo - jcanopi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Practica 5.3 - Web Storage y Geolocalización (JSON)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type "text/javascript" src="./sesion2.js"></script>
+  <style>
+    button.btn {
+      font-size: large;
+    }
+
+    button.btn-default {
+      font-size: medium;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>User data:</h2>
+    <br>
+    <button class="btn btn-default" type="button" id="boton01">Borrar info</button>
+    <br>
+    <br>
+    <p id="text"></p>
+  </div>
+
+  <script>
+    'use strict'
+    $(document).ready(function() {
+      let str;
+      if (!checkUser()) { //Caso user nuevo
+        console.log (getter());
+        let user = JSON.parse(getter()); //Objeto JS
+        str = "Hola " + user.name + ". Esta es tu primera visita. Tus coordenadas son: " +
+          user.lat + ", " + user.lon + "(más menos " + user.precision + " metros)";
+      }else{
+        alert("¡Hola de nuevo!");
+        let user = JSON.parse(getter()); //Objeto JS
+        if (sameLocation()){ //Caso user misma ubicacion
+          str = "Hola " + user.name + ". Tu última visita fue con fecha " + user.date +
+          ", desde la misma ubicación que ahora (coordenadas " + user.lat + ", " + user.lon +
+          " (más menos " + user.precision + " metros)";
+        }else{ //Caso user distinta ubicacion
+          str = "Hola " + user.name + ". Tu última visita fue con fecha " + user.date +
+          ". Tus coordenadas son: " + user.lat + ", " + user.lon + " (más menos " + user.precision + " metros)";
+        }
+      }
+      $("#text").text(str);
+
+      //Boton de borrado--------------
+      $("#boton01").click(function() {
+        localStorage.clear();
+        $("#text").text("Información borrada");
+      });
+    });
+  </script>
+
+</body>
+
+</html>
